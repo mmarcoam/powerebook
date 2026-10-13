@@ -1,0 +1,195 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: #1e1e1e;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #4CAF50, #2196F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls { display: flex; gap: 1rem; }
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+.btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+.btn-primary { background: #4CAF50; color: white; }
+.btn-secondary { background: #333; color: white; border: 1px solid #555; }
+
+.main-content { padding: 2rem; flex: 1; overflow-y: auto; }
+
+.section-title { margin-bottom: 1.5rem; color: #fff; }
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.book-card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #333;
+}
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-color: #4CAF50;
+}
+
+.book-cover {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.book-info h3 { font-size: 1rem; margin-bottom: 0.3rem; color: #fff; }
+.book-info p { font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem; }
+.book-format {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* Estilos do Leitor */
+.hidden { display: none !important; }
+
+.reader-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.reader-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #4CAF50;
+}
+
+.reader-placeholder {
+    background: #1e1e1e;
+    border: 2px dashed #333;
+    border-radius: 16px;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.reader-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+/* ===== TEMAS DO LEITOR ===== */
+body.theme-light {
+    background: #f5f5f5;
+    color: #1a1a1a;
+}
+
+body.theme-light .header {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+body.theme-light .book-card {
+    background: #ffffff;
+    border-color: #ddd;
+}
+
+body.theme-light .book-info h3 {
+    color: #1a1a1a;
+}
+
+body.theme-light .reader-placeholder {
+    background: #ffffff;
+    border-color: #ddd;
+    color: #333;
+}
+
+body.theme-light .section-title {
+    color: #1a1a1a;
+}
+
+/* Transição suave ao trocar de tema */
+body, .header, .book-card, .reader-placeholder {
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Indicador visual do tamanho da fonte */
+#font-size-display {
+    min-width: 60px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+/* ===== BOTÃO DE DELETAR ===== */
+.book-card {
+    position: relative; /* Necessário para posicionar o botão dentro do cartão */
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(220, 53, 69, 0.8); /* Vermelho translúcido */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Invisível por padrão */
+    transition: opacity 0.2s, transform 0.2s, background 0.2s;
+    z-index: 10;
+    padding: 0;
+}
+
+/* Mostra o botão quando passar o mouse sobre o cartão */
+.book-card:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    background: rgba(220, 53, 69, 1); /* Vermelho sólido */
+    transform: scale(1.1);
+}
